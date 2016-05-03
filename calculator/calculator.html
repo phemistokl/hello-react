@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.14.7/react-dom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div id="content"></div>
+
+	<script type="text/babel">
+		var Change = React.createClass({
+			getInitialState: function() {
+				return {
+					a: 0,
+					b: 0,
+					res: 0
+				}
+			},
+
+			delChange: function(event) {
+				this.setState({ a: +event.target.value})
+			},
+
+			demChange: function(event) {
+				this.setState({ b: +event.target.value})
+			},
+
+			Summing: function() {
+				this.setState({ res: this.state.a + this.state.b })
+			},
+
+			Deducting: function() {
+				this.setState({ res: this.state.a - this.state.b })
+			},
+
+			Multiple: function() {
+				this.setState({ res: this.state.a * this.state.b })
+			},
+
+			render: function() {
+				return <div>
+				<input onChange={this.delChange} className="first" type="text" /><br />
+				<input onChange={this.demChange} className="second" type="text" /><br />
+				<ul className="operation">
+				<li><p onClick={this.Summing} >+</p></li>
+				<li><p onClick={this.Deducting} >-</p></li>
+				<li><p onClick={this.Multiple} >*</p></li>
+				</ul>
+				<p className="result">{this.state.res}</p>
+				</div>
+			}
+		});
+
+		ReactDOM.render(
+			<Change />, document.getElementById('content'));
+	</script>
+</body>
+</html>
